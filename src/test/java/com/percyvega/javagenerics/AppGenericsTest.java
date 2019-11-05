@@ -6,11 +6,17 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+class MyHashMap extends HashMap {
+    static <K, V> HashMap<K, V> newInstance() {
+        return new HashMap<>();
+    }
+}
+
 @Log4j2
 class AppGenericsTest {
 
     @Test
-    void collection_factory_without_generics() {
+    void collection_instantiation_without_generics() {
         Map<Integer, String> numbers = new HashMap<>();
         numbers.put(0, "zero");
         numbers.put(1, "one");
