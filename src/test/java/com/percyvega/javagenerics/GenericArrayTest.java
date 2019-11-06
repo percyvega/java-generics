@@ -33,7 +33,6 @@ class GenericArray {
 
     //  A super      Number: A or any of its superclasses
     //  A extends    Number: A or any type that extends Number
-    //  A implements Number: A or any type that implements Number
     static <A extends Comparable<A>> A getLargest(A[] elements) {
         Arrays.sort(elements, Comparator.reverseOrder());
 

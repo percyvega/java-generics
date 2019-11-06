@@ -27,7 +27,7 @@ class Holder<T> {
 }
 
 @Log4j2
-public class HolderTest {
+class HolderTest {
 
     @Test
     void testInstantiation() {

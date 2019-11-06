@@ -11,7 +11,7 @@ interface Superhero {
 }
 
 class ComicCharacter {
-    boolean isFicticious() {
+    boolean isFictitious() {
         return true;
     }
 }
@@ -45,27 +45,31 @@ class Superman extends CharacterWithGender implements Superhero {
 
 @Log4j2
 class ComicsUtil {
+
+    // extends 2 interfaces!
     static <T extends MythologicalCharacter & Superhero> void printOriginAndPublisher(T t) {
         log.info(t.getOrigin());
         log.info(t.getPublisher());
     }
 
+    // extends an interface
     static <T extends Superhero> void printPublisher(T t) {
         log.info(t.getPublisher());
     }
 
+    // extends an interface
     static <T extends ComicCharacter> void printIsFictitious(T t) {
-        log.info(t.isFicticious());
+        log.info(t.isFictitious());
     }
 
+    // extends a class!
     static <T extends CharacterWithGender> void printGender(T t) {
         log.info(t.getGender());
     }
 }
 
-
 @Log4j2
-public class BoundedTypeParameterTest {
+class BoundedTypeParameterTest {
 
     @Test
     void test() {

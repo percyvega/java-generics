@@ -4,10 +4,7 @@ package com.percyvega.javagenerics;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigInteger;
 import java.util.*;
-
-import static com.percyvega.javagenerics.GenericCollection.*;
 
 /*
     You can use anything, but these are the conventions:
@@ -19,31 +16,28 @@ import static com.percyvega.javagenerics.GenericCollection.*;
         ? - unknown - where the type of objects are irrelevant (e.g. counting list elements)
  */
 @Log4j2
-class GenericCollection {
+class GenericCollectionTest {
 
     static <T> void printCollectionOfObjects(Collection<T> c) {
         log.info(Arrays.toString(c.toArray()));
     }
 
-    static void printCollectionOfNumbers(Collection<? extends Number> c) {
+    static <T extends Number> void printCollectionOfNumbers(Collection<T> c) {
         log.info(Arrays.toString(c.toArray()));
     }
 
-    static void printCount(Collection<?> c) {
+    static <T> void printCount(Collection<T> c) {
         log.info(c.size());
     }
-}
-
-@Log4j2
-class GenericCollectionTest {
 
     @Test
     void testCollections1() {
-        Set setOfRawType = new HashSet<Number>();
+        Set setOfRawType = new HashSet();
 
         setOfRawType.add(5);
         setOfRawType.add(3.0f);
 
+        printCollectionOfObjects(setOfRawType);
         printCount(setOfRawType);
     }
 
@@ -54,6 +48,7 @@ class GenericCollectionTest {
         setOfAnyType.add("abc");
         setOfAnyType.add(3.0f);
 
+        printCollectionOfObjects(setOfAnyType);
         printCount(setOfAnyType);
     }
 
