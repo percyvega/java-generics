@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 
-import static com.percyvega.javagenerics.GenericArray.getLargest;
-import static com.percyvega.javagenerics.GenericArray.print;
+import static com.percyvega.javagenerics.MethodLevelTypeVariableClass.getLargest;
+import static com.percyvega.javagenerics.MethodLevelTypeVariableClass.print;
 
 /*
     You can use anything, but these are the conventions:
@@ -19,7 +19,7 @@ import static com.percyvega.javagenerics.GenericArray.print;
         ? - unknown - where the type of objects are irrelevant (e.g. counting list elements)
  */
 @Log4j2
-class GenericArray {
+class MethodLevelTypeVariableClass {
 
     static <AA> void print(AA[] elements) {
         log.info("Array: " + Arrays.toString(elements));
@@ -41,7 +41,7 @@ class GenericArray {
 }
 
 @Log4j2
-class GenericArrayTest {
+class MethodLevelTypeVariableClassTest {
 
     @Test
     void printArrayInts() {

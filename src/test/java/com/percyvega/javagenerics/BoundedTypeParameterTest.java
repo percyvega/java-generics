@@ -46,7 +46,7 @@ class Superman extends CharacterWithGender implements Superhero {
 @Log4j2
 class ComicsUtil {
 
-    // extends 2 interfaces!
+    // extends 2 interfaces!!!
     static <T extends MythologicalCharacter & Superhero> void printOriginAndPublisher(T t) {
         log.info(t.getOrigin());
         log.info(t.getPublisher());
@@ -62,7 +62,7 @@ class ComicsUtil {
         log.info(t.isFictitious());
     }
 
-    // extends a class!
+    // extends a class!!!
     static <T extends CharacterWithGender> void printGender(T t) {
         log.info(t.getGender());
     }
