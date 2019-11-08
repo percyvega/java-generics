@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 /*
     You can use anything, but these are the conventions:
         E - Element
@@ -18,16 +20,16 @@ import java.util.*;
 @Log4j2
 class GenericCollectionTest {
 
-    static <T> void printCollectionOfObjects(Collection<T> c) {
-        log.info(Arrays.toString(c.toArray()));
+    static <T> String getCollectionOfObjects(Collection<T> c) {
+        return Arrays.toString(c.toArray());
     }
 
-    static <T extends Number> void printCollectionOfNumbers(Collection<T> c) {
-        log.info(Arrays.toString(c.toArray()));
+    static <T extends Number> String getCollectionOfNumbers(Collection<T> c) {
+        return Arrays.toString(c.toArray());
     }
 
-    static <T> void printCount(Collection<T> c) {
-        log.info(c.size());
+    static <T> int getCount(Collection<T> c) {
+        return c.size();
     }
 
     @Test
@@ -37,8 +39,8 @@ class GenericCollectionTest {
         setOfRawType.add(5);
         setOfRawType.add(3.0f);
 
-        printCollectionOfObjects(setOfRawType);
-        printCount(setOfRawType);
+        assertThat(getCollectionOfObjects(setOfRawType)).isEqualTo("[3.0, 5]");
+        assertThat(getCount(setOfRawType)).isEqualTo(02);
     }
 
     @Test
@@ -48,8 +50,8 @@ class GenericCollectionTest {
         setOfAnyType.add("abc");
         setOfAnyType.add(3.0f);
 
-        printCollectionOfObjects(setOfAnyType);
-        printCount(setOfAnyType);
+        assertThat(getCollectionOfObjects(setOfAnyType)).isEqualTo("[3.0, abc]");
+        assertThat(getCount(setOfAnyType)).isEqualTo(2);
     }
 
     @Test
@@ -59,8 +61,8 @@ class GenericCollectionTest {
         setOfString.add("abc");
         setOfString.add("def");
 
-        printCollectionOfObjects(setOfString);
-        printCount(setOfString);
+        assertThat(getCollectionOfObjects(setOfString)).isEqualTo("[abc, def]");
+        assertThat(getCount(setOfString)).isEqualTo(2);
     }
 
     @Test
@@ -71,8 +73,8 @@ class GenericCollectionTest {
         setOfAllSubTypeOfNumber.add(4f);
         setOfAllSubTypeOfNumber.add(3f);
 
-        printCollectionOfNumbers(setOfAllSubTypeOfNumber);
-        printCount(setOfAllSubTypeOfNumber);
+        assertThat(getCollectionOfNumbers(setOfAllSubTypeOfNumber)).isEqualTo("[5.0, 4.0, 3.0]");
+        assertThat(getCount(setOfAllSubTypeOfNumber)).isEqualTo(3);
     }
 
     @Test
@@ -83,35 +85,35 @@ class GenericCollectionTest {
         HashMap m = new HashMap();
         m.put("1", 1);
         setOfAllSuperTypeOfTreeMap.add(new TreeMap(m));
-        printCollectionOfObjects(setOfAllSuperTypeOfTreeMap);
+        assertThat(getCollectionOfObjects(setOfAllSuperTypeOfTreeMap)).isEqualTo("[{1=1}]");
 
         setOfAllSuperTypeOfTreeMap = new HashSet<SortedMap>(); //legal because SortedMap is super class of TreeMap
         LinkedHashMap m1 = new LinkedHashMap();
         m1.put("2", 2);
         setOfAllSuperTypeOfTreeMap.add(new TreeMap(m1));
-        printCollectionOfObjects(setOfAllSuperTypeOfTreeMap);
+        assertThat(getCollectionOfObjects(setOfAllSuperTypeOfTreeMap)).isEqualTo("[{2=2}]");
 
         setOfAllSuperTypeOfTreeMap = new LinkedHashSet<Map>(); //legal since Map is super type of TreeMap
         Hashtable m2 = new Hashtable();
         m2.put("3", 3);
         setOfAllSuperTypeOfTreeMap.add(new TreeMap(m2));
-        printCollectionOfObjects(setOfAllSuperTypeOfTreeMap);
+        assertThat(getCollectionOfObjects(setOfAllSuperTypeOfTreeMap)).isEqualTo("[{3=3}]");
     }
 
     @Test
     void testCollections7() {
         List<?> list = Arrays.asList(4, 2, 10, 18, 10, 16, 36, 34);
 
-        printCollectionOfObjects(list);
-        printCount(list);
+        assertThat(getCollectionOfObjects(list)).isEqualTo("[4, 2, 10, 18, 10, 16, 36, 34]");
+        assertThat(getCount(list)).isEqualTo(8);
     }
 
     @Test
     void testCollections8() {
         List<Object> list2 = Arrays.asList(4, 2, 10, 18, 10, 16, 36, 34);
 
-        printCollectionOfObjects(list2);
-        printCount(list2);
+        assertThat(getCollectionOfObjects(list2)).isEqualTo("[4, 2, 10, 18, 10, 16, 36, 34]");
+        assertThat(getCount(list2)).isEqualTo(8);
     }
 
 }

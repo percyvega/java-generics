@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @Log4j2
 class UnboundedWildcardsTest {
 
@@ -14,20 +16,20 @@ class UnboundedWildcardsTest {
 //        log.info(Arrays.toString(list.toArray()));
 //    }
 
-    private void printList(List<?> list) {
-        log.info(Arrays.toString(list.toArray()));
+    private String getList(List<?> list) {
+        return Arrays.toString(list.toArray());
     }
 
     @Test
     void useListOfIntegers() {
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
-        printList(list);
+        assertThat(getList(list)).isEqualTo("[1, 2, 3, 4, 5]");
     }
 
     @Test
     void useListOfStrings() {
         List<String> list = Arrays.asList("January", "February", "March");
-        printList(list);
+        assertThat(getList(list)).isEqualTo("[January, February, March]");
     }
 
 }

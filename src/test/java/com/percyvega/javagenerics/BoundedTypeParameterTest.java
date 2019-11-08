@@ -3,6 +3,8 @@ package com.percyvega.javagenerics;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 interface MythologicalCharacter {
     String getOrigin();
 }
@@ -46,25 +48,24 @@ class Superman extends CharacterWithGender implements Superhero {
 @Log4j2
 class ComicsUtil {
 
-    // extends 2 interfaces!!!
-    static <T extends MythologicalCharacter & Superhero> void printOriginAndPublisher(T t) {
-        log.info(t.getOrigin());
-        log.info(t.getPublisher());
+    // extends 1 class and 2 interfaces!!! You must start specifying with classes then interfaces
+    static <T extends ComicCharacter & MythologicalCharacter & Superhero> String getOriginAndPublisher(T t) {
+        return t.getOrigin() + ", " + t.getPublisher();
     }
 
     // extends an interface
-    static <T extends Superhero> void printPublisher(T t) {
-        log.info(t.getPublisher());
+    static <T extends Superhero> String getPublisher(T t) {
+        return t.getPublisher();
     }
 
     // extends an interface
-    static <T extends ComicCharacter> void printIsFictitious(T t) {
-        log.info(t.isFictitious());
+    static <T extends ComicCharacter> boolean getIsFictitious(T t) {
+        return t.isFictitious();
     }
 
     // extends a class!!!
-    static <T extends CharacterWithGender> void printGender(T t) {
-        log.info(t.getGender());
+    static <T extends CharacterWithGender> String getGender(T t) {
+        return t.getGender();
     }
 }
 
@@ -72,16 +73,19 @@ class ComicsUtil {
 class BoundedTypeParameterTest {
 
     @Test
-    void test() {
+    void testThor() {
         Thor thor = new Thor();
 
-        ComicsUtil.printOriginAndPublisher(thor);
-        ComicsUtil.printPublisher(thor);
-        ComicsUtil.printIsFictitious(thor);
+        assertThat(ComicsUtil.getOriginAndPublisher(thor)).isEqualTo("Germanic, DC");
+        assertThat(ComicsUtil.getPublisher(thor)).isEqualTo("DC");
+        assertThat(ComicsUtil.getIsFictitious(thor)).isEqualTo(true);
+    }
 
+    @Test
+    void testSuperman() {
         Superman superman = new Superman();
 
-        ComicsUtil.printPublisher(superman);
-        ComicsUtil.printGender(superman);
+        assertThat(ComicsUtil.getPublisher(superman)).isEqualTo("Marvel");
+        assertThat(ComicsUtil.getGender(superman)).isEqualTo("Male");
     }
 }
