@@ -16,7 +16,6 @@ class UpperBoundedWildcardTest {
 //        double sum = list.stream()
 //                .mapToDouble(o -> Double.parseDouble((o.toString())))
 //                .sum();
-//        log.info(sum);
 //    }
 
     private Double getSum(List<? extends Number> list) {
