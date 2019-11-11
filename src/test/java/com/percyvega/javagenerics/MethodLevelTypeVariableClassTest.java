@@ -10,15 +10,6 @@ import java.util.Comparator;
 import static com.percyvega.javagenerics.MethodLevelTypeVariableClass.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/*
-    You can use anything, but these are the conventions:
-        E - Element
-        K - Key
-        N - Number
-        T - Type
-        V - Value
-        ? - unknown - where the type of objects are irrelevant (e.g. counting list elements)
- */
 @Log4j2
 class MethodLevelTypeVariableClass {
 

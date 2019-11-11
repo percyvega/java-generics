@@ -15,7 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
         N - Number
         T - Type
         V - Value
-        ? - unknown - where the type of objects are irrelevant (e.g. counting list elements)
+        ? - unknown
+                Used when object type is irrelevant (e.g. counting elements)
+                Used when nothing in the implementation depends on it
+                Used when no dependency between argument type and return type
+                Always prefer ? over <T> because it's cleaner and more concise
  */
 @Log4j2
 class GenericCollectionTest {
