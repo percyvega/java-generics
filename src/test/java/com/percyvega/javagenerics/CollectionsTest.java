@@ -13,7 +13,6 @@ class MyHashMap extends HashMap {
     }
 }
 
-
 @Log4j2
 class CollectionsTest {
 

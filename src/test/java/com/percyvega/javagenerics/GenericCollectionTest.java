@@ -8,19 +8,6 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/*
-    You can use anything, but these are the conventions:
-        E - Element
-        K - Key
-        N - Number
-        T - Type
-        V - Value
-        ? - unknown
-                Used when object type is irrelevant (e.g. counting elements)
-                Used when nothing in the implementation depends on it
-                Used when no dependency between argument type and return type
-                Always prefer ? over <T> because it's cleaner and more concise
- */
 @Log4j2
 class GenericCollectionTest {
 
